@@ -6,9 +6,9 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="flex">
+      <div className="flex mt-16">
         <Sidebar/>
-        <div>Video will render here</div>
+      
       </div>
     </>
   );

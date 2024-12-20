@@ -7,7 +7,7 @@ import { CiSearch } from "react-icons/ci";
 
 const Navbar = () => {
   return (
-    <div className="flex top-0 justify-center items-center w-[100%]">
+    <div className="flex top-0 justify-center items-center w-[100%] z-10 bg-white fixed">
       <div className="flex w-[96%] py-3 justify-between items-center">
         <div className="flex items-center">
           <GiHamburgerMenu size="24px" className="cursor-pointer" />
