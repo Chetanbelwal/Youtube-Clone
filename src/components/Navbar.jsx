@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiVideoOn } from "react-icons/ci";
@@ -6,11 +6,18 @@ import Avatar from "react-avatar";
 import { CiSearch } from "react-icons/ci";
 
 const Navbar = () => {
+const [open, setOpen] = useState(true)
+
+const toggleHandler = ()=>{
+  setOpen(!open)
+  
+}
+
   return (
     <div className="flex top-0 justify-center items-center w-[100%] z-10 bg-white fixed">
       <div className="flex w-[96%] py-3 justify-between items-center">
         <div className="flex items-center">
-          <GiHamburgerMenu size="24px" className="cursor-pointer" />
+          <GiHamburgerMenu onClick={toggleHandler} size="24px" className="cursor-pointer" />
           <img
             className="px-4"
             width={"115px"}
