@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiVideoOn } from "react-icons/ci";
 import Avatar from "react-avatar";
 import { CiSearch } from "react-icons/ci";
 
-const Navbar = () => {
-const [open, setOpen] = useState(true)
+import { toggleSidebar } from "../store/appSlice";
+import { useDispatch } from "react-redux";
 
-const toggleHandler = ()=>{
-  setOpen(!open)
-  
-}
+const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const toggleHandler = () => {
+    dispatch(toggleSidebar());
+  };
 
   return (
     <div className="flex top-0 justify-center items-center w-[100%] z-10 bg-white fixed">
       <div className="flex w-[96%] py-3 justify-between items-center">
         <div className="flex items-center">
-          <GiHamburgerMenu onClick={toggleHandler} size="24px" className="cursor-pointer" />
+          <GiHamburgerMenu
+            onClick={toggleHandler}
+            size="24px"
+            className="cursor-pointer"
+          />
           <img
             className="px-4"
             width={"115px"}
