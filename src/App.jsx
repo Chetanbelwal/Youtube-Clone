@@ -1,18 +1,13 @@
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Body from "./components/Body";
 import "./App.css";
-import Sidebar from "./components/Sidebar";
-import Feed from "./components/Feed";
 
 function App() {
   return (
     <>
       <Navbar />
-      <div className="flex mt-20">
-        <Sidebar />
-        <Feed />
-        
-        
-      </div>
+      <Body />
     </>
   );
 }

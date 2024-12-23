@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Avatar from "react-avatar";
-import API_KEY from "../constant/youtube";
+// import API_KEY from "../constant/youtube";
 
 const VideoCart = ({ item }) => {
+  const API_KEY = process.env.REACT_APP_API_KEY
   const [ytIcon, setYtIcon] = useState("");
   const getYoutubeChannelName = async () => {
     try {

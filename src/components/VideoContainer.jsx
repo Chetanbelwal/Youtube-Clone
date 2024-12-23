@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import API_KEY, { YOUTUBE_VIDEO_API } from '../constant/youtube';
-import { YOUTUBE_VIDEO_API } from "../constant/youtube";
 import VideoCart from "./VideoCart";
 import { useSelector } from "react-redux";
-// import VideoCart from './VideoCart';
 // import { Link } from 'react-router-dom';
 // import { useDispatch, useSelector } from "react-redux";
 // import { setHomeVideo } from '../utils/appSlice';
@@ -15,10 +12,15 @@ const VideoContainer = () => {
   const [video, setVideo] = useState([]);
   // console.log(category);
   // const dispatch = useDispatch();
-  // jab bhi api call/network call kr rhe ho toh apko hmesha useEffect use krna hai
+  // jFor network call always use useEffect hook
+
+  const API_KEY = process.env.REACT_APP_API_KEY;
+
   const fetchingYoutubeVideo = async () => {
     try {
-      const res = await axios.get(`${YOUTUBE_VIDEO_API}`);
+      const res = await axios.get(
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=${API_KEY}`
+      );
       // dispatch(setHomeVideo(res?.data?.items))
       setVideo(res?.data?.items);
     } catch (error) {
@@ -42,11 +44,10 @@ const VideoContainer = () => {
   // }, [category]);
   useEffect(() => {
     fetchingYoutubeVideo();
-  }, []);
+  },[]);
 
   return (
-    <div className={`grid ${open ? 'grid-cols-3' : 'grid-cols-4'} gap-3`}>
-
+    <div className={`grid ${open ? "grid-cols-3" : "grid-cols-4"} gap-3`}>
       {video.map((item) => {
         console.log(item);
         return (
