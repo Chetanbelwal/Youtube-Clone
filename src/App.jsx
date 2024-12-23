@@ -10,6 +10,8 @@ function App() {
       <div className="flex mt-20">
         <Sidebar />
         <Feed />
+        
+        
       </div>
     </>
   );
