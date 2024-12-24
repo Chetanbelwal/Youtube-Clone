@@ -1,12 +1,13 @@
 import React from "react";
 import Sidebar from './Sidebar'
-import Feed from './Feed'
+// import Feed from './Feed'
+import { Outlet } from "react-router-dom";
 
 const Body = () => {
   return (
     <div className="flex mt-20">
       <Sidebar />
-      <Feed />
+      <Outlet />
     </div>
   );
 };

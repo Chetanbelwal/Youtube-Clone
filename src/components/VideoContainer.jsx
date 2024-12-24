@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import VideoCart from "./VideoCart";
 import { useSelector } from "react-redux";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { useDispatch, useSelector } from "react-redux";
 // import { setHomeVideo } from '../utils/appSlice';
 
@@ -51,14 +51,14 @@ const VideoContainer = () => {
       {video.map((item) => {
         console.log(item);
         return (
-          //   <Link
-          //     to={`/watch?v=${
-          //       typeof item.id === "object" ? item.id.videoId : item.id
-          //     }`}
-          //     key={typeof item.id === "object" ? item.id.videoId : video.id}
-          //   >
+            <Link
+              to={`/watch?v=${
+                typeof item.id === "object" ? item.id.videoId : item.id
+              }`}
+              key={typeof item.id === "object" ? item.id.videoId : video.id}
+            >
           <VideoCart key={item.id} item={item} />
-          //   </Link>
+            </Link>
         );
       })}
       {/* {
