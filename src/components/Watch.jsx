@@ -5,24 +5,44 @@ import Avatar from "react-avatar";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { PiShareFatLight } from "react-icons/pi";
 import { GoDownload } from "react-icons/go";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { LuSendHorizontal } from "react-icons/lu";
+import LiveChat from "./LiveChat";
+import { useDispatch } from "react-redux";
+import { setMessage } from "../store/chatSlice";
 
 const Watch = () => {
-    const API_KEY = process.env.REACT_APP_API_KEY;
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  const [input, setInput] = useState("");
+  const [singleVideo, setSingleVideo] = useState(null);
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
-  const [singleVideo, setSingleVideo] = useState(null);
+  const dispatch = useDispatch();
 
   const getSingleVideo = async () => {
     try {
-        const res = await axios.get(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`);
-        setSingleVideo(res?.data?.items[0]);
+      const res = await axios.get(
+        `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
+      );
+      setSingleVideo(res?.data?.items[0]);
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
-useEffect(() => {
+  };
+  const sendMessage = () => {
+    if (input.trim() !== "") {
+      // Check if input has any non-whitespace characters
+      dispatch(setMessage({ name: "Chetan", message: input }));
+      setInput(""); // Clear the input after sending the message
+    } else {
+      console.log("Message cannot be empty"); // Optional: Handle empty input case
+    }
+  };
+
+  useEffect(() => {
     getSingleVideo();
-}, []);
+  }, []);
+
   return (
     <div className="flex ml-4 w-[100%] mt-2">
       <div className="flex w-[88%]">
@@ -35,8 +55,9 @@ useEffect(() => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
-          {/* <h1 className="font-bold mt-2 text-lg">Title</h1> */}
-          <h1 className='font-bold mt-2 text-lg'>{singleVideo?.snippet?.title}</h1>
+          <h1 className="font-bold mt-2 text-lg">
+            {singleVideo?.snippet?.title}
+          </h1>
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-between w-[35%]">
               <div className="flex">
@@ -45,8 +66,9 @@ useEffect(() => {
                   size={35}
                   round={true}
                 />
-                <h1 className='font-bold ml-2'>{singleVideo?.snippet?.channelTitle}</h1>
-                {/* <h1 className="font-bold ml-2">Title</h1> */}
+                <h1 className="font-bold ml-2">
+                  {singleVideo?.snippet?.channelTitle}
+                </h1>
               </div>
               <button className="px-4 py-1 font-medium bg-black text-white rounded-full">
                 Subscribe
@@ -64,6 +86,42 @@ useEffect(() => {
               <div className="flex items-center cursor-pointer bg-gray-200 px-4 py-2 rounded-full">
                 <GoDownload />
                 <span>Download</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-[100%] border border-gray-300 ml-8 rounded-lg h-fit p-4">
+          <div className="flex justify-between items-center">
+            <h1>Top Chat</h1>
+            <BsThreeDotsVertical />
+          </div>
+          <div className="overflow-y-auto h-[28rem] flex flex-col-reverse">
+            <LiveChat />
+          </div>
+
+          <div className="flex items-center justify-between border-t p-2">
+            <div className="flex items-center w-[90%]">
+              <div>
+                <Avatar
+                  src="https://play-lh.googleusercontent.com/C9CAt9tZr8SSi4zKCxhQc9v4I6AOTqRmnLchsu1wVDQL0gsQ3fmbCVgQmOVM1zPru8UH=w240-h480-rw"
+                  size={35}
+                  round={true}
+                />
+              </div>
+              <input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && input.trim()) {
+                    sendMessage(); // Send message when Enter is pressed
+                  }
+                }}
+                className="border-b border-gray-300 outline-none ml-2"
+                type="text"
+                placeholder="Send message..."
+              />
+              <div className="bg-gray-200 cursor-pointer p-2 rounded-full">
+                <LuSendHorizontal onClick={sendMessage} />
               </div>
             </div>
           </div>

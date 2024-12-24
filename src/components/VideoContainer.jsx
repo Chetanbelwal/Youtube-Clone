@@ -49,7 +49,7 @@ const VideoContainer = () => {
   return (
     <div className={`grid ${open ? "grid-cols-3" : "grid-cols-4"} gap-3`}>
       {video.map((item) => {
-        console.log(item);
+        // console.log(item);
         return (
             <Link
               to={`/watch?v=${
