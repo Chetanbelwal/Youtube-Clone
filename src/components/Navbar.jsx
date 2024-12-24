@@ -4,7 +4,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiVideoOn } from "react-icons/ci";
 import Avatar from "react-avatar";
 import { CiSearch } from "react-icons/ci";
-
+import { Link } from 'react-router-dom';
 import { toggleSidebar } from "../store/appSlice";
 import { useDispatch } from "react-redux";
 
@@ -24,12 +24,13 @@ const Navbar = () => {
             size="24px"
             className="cursor-pointer"
           />
-          <img
+          <Link to={`/`}><img
             className="px-4"
             width={"115px"}
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/768px-YouTube_Logo_2017.svg.png"
             alt="yt_logo"
-          />
+          /></Link>
+          
         </div>
         <div className="flex w-[40%] items-center">
           <div className="flex w-[100%] ">

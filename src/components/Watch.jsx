@@ -10,8 +10,10 @@ import { LuSendHorizontal } from "react-icons/lu";
 import LiveChat from "./LiveChat";
 import { useDispatch } from "react-redux";
 import { setMessage } from "../store/chatSlice";
+import { useSelector } from "react-redux";
 
 const Watch = () => {
+  const open = useSelector((store) => store.app.open);
   const API_KEY = process.env.REACT_APP_API_KEY;
   const [input, setInput] = useState("");
   const [singleVideo, setSingleVideo] = useState(null);
@@ -44,8 +46,8 @@ const Watch = () => {
   }, []);
 
   return (
-    <div className="flex ml-4 w-[100%] mt-2">
-      <div className="flex w-[88%]">
+    <div className="flex ml-4 w-[100%] mt-2 pl-3">
+      <div className={`flex ${open ? "w-[88%]" : "w-[95%]"}`}>
         <div>
           <iframe
             width="900"
