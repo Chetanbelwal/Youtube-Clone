@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiVideoOn } from "react-icons/ci";
 import Avatar from "react-avatar";
 import { CiSearch } from "react-icons/ci";
-import { Link } from 'react-router-dom';
-import { toggleSidebar } from "../store/appSlice";
+import { Link } from "react-router-dom";
+import { toggleSidebar, setCategory } from "../store/appSlice";
 import { useDispatch } from "react-redux";
 
 const Navbar = () => {
+  const [input, setInput] = useState("");
   const dispatch = useDispatch();
 
+  const searchVideo = () => {
+    if (input.trim()) { // Check if input has a non-empty value
+      dispatch(setCategory(input));
+      setInput("");
+    }
+  };
+
+  const handleEnterKey = (e) => {
+    if (e.key === "Enter") {
+      searchVideo(); // Trigger search on Enter key press
+      setInput("");
+    }
+  };
+  
   const toggleHandler = () => {
     dispatch(toggleSidebar());
   };
@@ -24,22 +39,32 @@ const Navbar = () => {
             size="24px"
             className="cursor-pointer"
           />
-          <Link to={`/`}><img
-            className="px-4"
-            width={"115px"}
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/768px-YouTube_Logo_2017.svg.png"
-            alt="yt_logo"
-          /></Link>
-          
+          <Link to={`/`}>
+            <img
+            
+              className="px-4"
+              width={"115px"}
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/768px-YouTube_Logo_2017.svg.png"
+              alt="yt_logo"
+            />
+          </Link>
         </div>
         <div className="flex w-[40%] items-center">
           <div className="flex w-[100%] ">
             <input
+              value={input}
+              onChange={(e) => {
+                setInput(e.target.value);
+              }}
+              onKeyDown={handleEnterKey}
               type="text"
               placeholder="Search"
               className="w-full py-2 px-4 border border-gray-400 rounded-l-full outline-none"
             />
-            <button className="py-2 border border-gray-400 rounded-r-full px-4">
+            <button
+              onClick={searchVideo}
+              className="py-2 border border-gray-400 rounded-r-full px-4"
+            >
               <CiSearch size="24px" />
             </button>
           </div>
