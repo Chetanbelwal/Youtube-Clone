@@ -1,105 +1,115 @@
 import React from "react";
-import { CiHome } from "react-icons/ci";
-import { SiYoutubeshorts } from "react-icons/si";
-import { MdOutlineSubscriptions } from "react-icons/md";
+import { 
+  AiOutlineHome, AiOutlineHistory, AiOutlineFire, AiOutlineClockCircle, 
+  AiOutlineSetting, AiOutlineQuestionCircle, AiOutlineLogout, AiOutlineSearch, 
+  AiOutlineThunderbolt, AiOutlineCamera, AiOutlineUser, AiOutlineShareAlt, 
+  AiOutlineAppstoreAdd, AiOutlineComment
+} from "react-icons/ai";
+import { FaRegPlayCircle, FaRegFolder, FaMusic, FaThumbsUp } from "react-icons/fa";
+import { MdSubscriptions, MdPlaylistPlay, MdNotifications, MdLiveTv, MdCameraAlt } from "react-icons/md";
+import { RiVideoLine, RiBookmarkLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 
 const sidebarItem = [
   {
-    icons: <CiHome size="24px" />,
+    icons: <AiOutlineHome size="24px" />,
     title: "Home",
   },
   {
-    icons: <SiYoutubeshorts size="24px" />,
-    title: "Short",
+    icons: <FaRegPlayCircle size="24px" />,
+    title: "Shorts",
   },
   {
-    icons: <MdOutlineSubscriptions size="24px" />,
+    icons: <MdSubscriptions size="24px" />,
     title: "Subscription",
   },
   {
-    icons: <CiHome size="24px" />,
-    title: "Home",
+    icons: <RiVideoLine size="24px" />,
+    title: "Your Videos",
   },
   {
-    icons: <SiYoutubeshorts size="24px" />,
-    title: "Short",
+    icons: <FaRegFolder size="24px" />,
+    title: "Library",
   },
   {
-    icons: <MdOutlineSubscriptions size="24px" />,
-    title: "Subscription",
+    icons: <AiOutlineHistory size="24px" />,
+    title: "History",
   },
   {
-    icons: <CiHome size="24px" />,
-    title: "Home",
+    icons: <AiOutlineFire size="24px" />,
+    title: "Trending",
   },
   {
-    icons: <SiYoutubeshorts size="24px" />,
-    title: "Short",
+    icons: <FaMusic size="24px" />,
+    title: "Music",
   },
   {
-    icons: <MdOutlineSubscriptions size="24px" />,
-    title: "Subscription",
+    icons: <MdPlaylistPlay size="24px" />,
+    title: "Playlists",
   },
   {
-    icons: <CiHome size="24px" />,
-    title: "Home",
+    icons: <AiOutlineClockCircle size="24px" />,
+    title: "Watch Later",
   },
   {
-    icons: <SiYoutubeshorts size="24px" />,
-    title: "Short",
+    icons: <FaThumbsUp size="24px" />,
+    title: "Liked Videos",
   },
   {
-    icons: <MdOutlineSubscriptions size="24px" />,
-    title: "Subscription",
+    icons: <AiOutlineSetting size="24px" />,
+    title: "Settings",
   },
   {
-    icons: <CiHome size="24px" />,
-    title: "Home",
+    icons: <AiOutlineQuestionCircle size="24px" />,
+    title: "Help",
   },
   {
-    icons: <SiYoutubeshorts size="24px" />,
-    title: "Short",
+    icons: <AiOutlineLogout size="24px" />,
+    title: "Sign Out",
   },
   {
-    icons: <MdOutlineSubscriptions size="24px" />,
-    title: "Subscription",
+    icons: <MdNotifications size="24px" />,
+    title: "Notifications",
   },
   {
-    icons: <CiHome size="24px" />,
-    title: "Home",
+    icons: <MdLiveTv size="24px" />,
+    title: "Live",
   },
   {
-    icons: <SiYoutubeshorts size="24px" />,
-    title: "Short",
+    icons: <AiOutlineSearch size="24px" />,
+    title: "Search",
   },
   {
-    icons: <MdOutlineSubscriptions size="24px" />,
-    title: "Subscription",
+    icons: <AiOutlineThunderbolt size="24px" />,
+    title: "Trending Now",
   },
   {
-    icons: <CiHome size="24px" />,
-    title: "Home",
+    icons: <RiBookmarkLine size="24px" />,
+    title: "Bookmarks",
   },
   {
-    icons: <SiYoutubeshorts size="24px" />,
-    title: "Short",
+    icons: <MdCameraAlt size="24px" />,
+    title: "Camera",
   },
   {
-    icons: <MdOutlineSubscriptions size="24px" />,
-    title: "Subscription",
+    icons: <AiOutlineCamera size="24px" />,
+    title: "Live Stream",
   },
   {
-    icons: <CiHome size="24px" />,
-    title: "Home",
+    icons: <AiOutlineUser size="24px" />,
+    title: "Channel",
   },
   {
-    icons: <SiYoutubeshorts size="24px" />,
-    title: "Short",
+    icons: <AiOutlineShareAlt size="24px" />,
+    title: "Share",
   },
   {
-    icons: <MdOutlineSubscriptions size="24px" />,
-    title: "Subscription",
+    icons: <AiOutlineAppstoreAdd size="24px" />,
+    title: "Help Center",
+  },
+  {
+    icons: <AiOutlineComment size="24px" />,
+    title: "Feedback",
   },
 ];
 
@@ -108,15 +118,13 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`relative left-0 ${
-        open ? "w-[20%]" : "w-[6%]"
-      } p-5 h-[calc(100vh-4.625rem)] bg-white overflow-y-scroll overflow-x-hidden`}
+      className={`relative left-0 ${open ? "w-[20%]" : "w-[6%]"} p-5 h-[calc(100vh-4.625rem)] bg-white overflow-y-scroll overflow-x-hidden`}
     >
       {sidebarItem.map((item, index) => {
         return (
           <div key={index} className="flex my-3 ml-2">
             {item.icons}
-            <p className={`ml-5 ${!open && "hidden"}`}>{item.title}</p>
+            <p className={`ml-5 ${open ? "" : "hidden"}`}>{item.title}</p>
           </div>
         );
       })}
