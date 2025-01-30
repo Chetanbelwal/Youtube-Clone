@@ -1,70 +1,108 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# YouTube Clone
 
-## Available Scripts
+## Introduction
+The YouTube Clone is a web application that replicates some core features of YouTube. This project allows users to browse and search for videos, view video details, and interact with a live chat feature. The frontend is built using React and Tailwind CSS, while Redux Toolkit is used for state management. The app utilizes the YouTube API to fetch video data, including channel information, likes, and subscribers. 🚀
 
-In the project directory, you can run:
+## Content
+- Technology Stack
+- [Project Type](#project-type)
+- [Deployed App](#deployed-app)
+- [Directory Structure](#directory-structure)
+- [Video/Photo Walkthrough of the project](#video-walkthrough-of-the-project)
+- [Features](#features)
+- [Installation & Getting started](#installation--getting-started)
+- [Environment Variables](#environment-variables)
+- [Design Decisions or Assumptions](#DesignDecisionsorAssumptions)
+## Technology Stack
+- React: A JavaScript library for building user interfaces.
 
-### `npm start`
+- Tailwind CSS: A utility-first CSS framework for styling.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Redux Toolkit: A state management tool for handling application state efficiently.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- YouTube API: Used for fetching video data, including search results, channel details, likes, and subscriber count.
 
-### `npm test`
+## Project Type
+Frontend Only
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deployed App
+Frontend: [https://youtube-clone-mauve-one.vercel.app/]
 
-### `npm run build`
+## Directory Structure
+```
+Youtube-Clone/
+├─ public/  
+│  ├─ All Images are here  
+├─ src/  
+│  ├─ components/  
+│  │  ├─ Body.jsx  
+│  │  ├─ ButtonList.jsx  
+│  │  ├─ ChatMessage.jsx  
+│  │  ├─ Feed.jsx  
+│  │  ├─ LiveChat.jsx  
+│  │  ├─ Navbar.jsx  
+│  │  ├─ Sidebar.jsx  
+│  │  ├─ VideoCart.jsx  
+│  │  ├─ VideoContainer.jsx  
+│  │  ├─ Watch.jsx  
+│  ├─ store/  
+│  │  ├─ appSlice.jsx  
+│  │  ├─ chatSlice.jsx  
+│  │  ├─ helper.jsx  
+│  │  ├─ store.jsx  
+│  ├─ App.css  
+│  ├─ App.jsx  
+│  ├─ index.css  
+│  ├─ index.js  
+├─ tailwind.config.js  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+## Video/Photo Walkthrough of the project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Will Upload it soon
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Features
+- Top Videos: Displays the top 50 trending YouTube videos on the homepage.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Search & Filters: Users can search for videos and filter results using button categories.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Search Suggestions: Implements YouTube's search suggestion API to enhance the search experience.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Debouncing: Reduces unnecessary API calls when searching for videos.
 
-## Learn More
+- Live Chat: A dynamic chat feature where comments appear in real-time.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- User Comments: Users can comment on videos, and comments are shown as live updates.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Video Details: Fetches and displays video details, including channel name, likes, and subscriber count.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Installation & Getting started
+To run the project locally, follow these steps:
 
-### Analyzing the Bundle Size
+```
+## Install the Project
+git clone https://github.com/Chetanbelwal/Youtube-Clone.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Navigate to project
+d cd Youtube-Clone
 
-### Making a Progressive Web App
+## Install dependencies
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Start the development server
+npm start
+```
 
-### Advanced Configuration
+## Environment Variables
+Make sure to set up the following environment variables in a .env file in the root
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+REACT_APP_API_KEY=Your_API_Key
+REACT_APP_BASE_URL=https://www.googleapis.com/youtube/v3
+REACT_APP_SEARCH_SUGGESTIONS_API=https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
